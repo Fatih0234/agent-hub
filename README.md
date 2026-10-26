@@ -2,7 +2,7 @@
 
 # Agent hub
 
-Generated: `2026-10-26T12:30:24Z` (UTC).
+Generated: `2026-10-26T12:30:52Z` (UTC).
 
 Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.
 
@@ -16,8 +16,8 @@ Live files stay on the machine. This repo is only the published view.
 
 | Harness | Version | Config | Standing instructions | Default model |
 |---|---|---|---|---|
-| Pi | env: 'node': No such file or directory | `~/.pi/agent` | ~/.agents/AGENTS.md; ~/.pi/agent/APPEND_SYSTEM.md | `grok-4.6` |
-| OpenCode | — | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md; ~/.config/opencode/instructions/pstack.md; ~/.config/opencode/instructions/pstack-models.md | `openai/gpt-6-luna#max` |
+| Pi | 1.4.0 | `~/.pi/agent` | ~/.agents/AGENTS.md; ~/.pi/agent/APPEND_SYSTEM.md | `grok-4.6` |
+| OpenCode | opencode v2.1.4 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md; ~/.config/opencode/instructions/pstack.md; ~/.config/opencode/instructions/pstack-models.md | `openai/gpt-6-luna#max` |
 | Delta | delta 0.21.0 | `~/.config/delta` | ~/.config/delta/AGENTS.md | `—` |
 | Claude Code | 2.1.310 (Claude Code) | `~/.claude` | ~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md) | `opus` |
 | Codex | codex-cli 0.163.0 | `~/.codex` | ~/.codex/AGENTS.md -> ~/.agents/AGENTS.md | `gpt-6.1-sol` |
@@ -78,7 +78,7 @@ Optimize for understanding, inspection, and verification.
 ## Pi
 
 - Binary: `~/.local/bin/pi`
-- Version: `env: 'node': No such file or directory`
+- Version: `1.4.0`
 - Config: `~/.pi/agent`
 - Provider: `xai`
 - Enabled models: `xai/grok-4.6`, `opencode-go/muse-spark-1.3-contributor`, `opencode-go/deepseek-v4.1-flash`, `openai/gpt-6-astra`, `openai/gpt-6-luna`, `openai/gpt-6.1-sol`, `claude-sdk/claude-sonnet-5-5`, `claude-sdk/claude-haiku-5-5`, `claude-sdk/claude-opus-5-5`
@@ -118,8 +118,8 @@ These rules apply on top of AGENTS.md. They are about this terminal, not about w
 
 ## OpenCode
 
-- Binary: `missing`
-- Version: `unknown`
+- Binary: `~/.opencode/bin/opencode`
+- Version: `opencode v2.1.4`
 - Config: `~/.config/opencode`
 - Agent `general` model: `openai/gpt-6-luna#max`
 - Agent `explore` model: `openai/gpt-6-luna#max`
