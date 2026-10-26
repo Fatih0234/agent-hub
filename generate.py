@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -28,7 +29,41 @@ KEYISH_RE = re.compile(
 )
 
 
+def ensure_path() -> None:
+    """Make CLI lookups work under systemd's thin PATH."""
+    extras: list[Path] = [
+        HOME / ".local/bin",
+        HOME / ".opencode/bin",
+        HOME / ".grok/bin",
+        HOME / ".pi/agent/bin",
+    ]
+    nvm_bin = os.environ.get("NVM_BIN")
+    if nvm_bin:
+        extras.append(Path(nvm_bin))
+    else:
+        nvm = HOME / ".nvm/versions/node"
+        if nvm.is_dir():
+            versions = [p for p in nvm.iterdir() if (p / "bin" / "node").is_file()]
+            if versions:
+                extras.append(max(versions, key=_nvm_sort_key) / "bin")
+    parts = [p for p in os.environ.get("PATH", "").split(":") if p]
+    seen = set(parts)
+    prefix: list[str] = []
+    for extra in extras:
+        text = str(extra)
+        if extra.is_dir() and text not in seen:
+            prefix.append(text)
+            seen.add(text)
+    os.environ["PATH"] = ":".join(prefix + parts)
+
+
+def _nvm_sort_key(path: Path) -> tuple[int, ...]:
+    nums = re.findall(r"\d+", path.name)
+    return tuple(int(n) for n in nums) if nums else (0,)
+
+
 def sh(args: list[str], timeout: int = 8) -> str | None:
+    """Return stdout if the process exits 0. Never publish stderr."""
     try:
         p = subprocess.run(
             args,
@@ -39,7 +74,9 @@ def sh(args: list[str], timeout: int = 8) -> str | None:
         )
     except (FileNotFoundError, subprocess.TimeoutExpired):
         return None
-    out = (p.stdout or "").strip() or (p.stderr or "").strip()
+    if p.returncode != 0:
+        return None
+    out = (p.stdout or "").strip()
     return out or None
 
 
@@ -51,7 +88,7 @@ def version(bin_name: str, extra: list[str] | None = None) -> str | None:
 
 
 def which(bin_name: str) -> str | None:
-    p = sh(["which", bin_name])
+    p = shutil.which(bin_name)
     return tidy_path(p) if p else None
 
 
@@ -456,6 +493,28 @@ def without_time(data: dict) -> dict:
     return copy
 
 
+def readme_body(text: str) -> str:
+    return re.sub(
+        r"Generated: `[^`]*` \(UTC\)\.",
+        "Generated: `<time>` (UTC).",
+        text,
+        count=1,
+    )
+
+
+def should_skip_write(
+    data: dict,
+    previous_without_time: dict,
+    existing_readme: str | None,
+    new_readme: str,
+) -> bool:
+    if existing_readme is None:
+        return False
+    if without_time(data) != previous_without_time:
+        return False
+    return readme_body(existing_readme) == readme_body(new_readme)
+
+
 def git_push_if_changed() -> None:
     def git(args: list[str]) -> subprocess.CompletedProcess:
         return subprocess.run(
@@ -485,16 +544,19 @@ def main() -> None:
     parser.add_argument("--push", action="store_true", help="commit and push if changed")
     args = parser.parse_args()
     os.chdir(ROOT)
+    ensure_path()
     data = collect()
+    new_readme = render(data)
     previous = {}
     if INVENTORY.is_file():
         try:
             previous = without_time(json.loads(INVENTORY.read_text(encoding="utf-8")))
         except json.JSONDecodeError:
             previous = {}
-    if without_time(data) == previous:
+    existing_readme = README.read_text(encoding="utf-8") if README.is_file() else None
+    if should_skip_write(data, previous, existing_readme, new_readme):
         return
-    README.write_text(render(data), encoding="utf-8")
+    README.write_text(new_readme, encoding="utf-8")
     INVENTORY.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     if args.push:
         git_push_if_changed()
