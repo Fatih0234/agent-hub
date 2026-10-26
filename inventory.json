@@ -1,0 +1,194 @@
+{
+  "generated_at": "2026-10-26T12:29:53Z",
+  "purpose": "Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.",
+  "shared": {
+    "repo": "https://github.com/Fatih0234/agents",
+    "path": "~/.agents",
+    "AGENTS.md": "## About the user\n\nThe user's profile is in `~/my-brain/About/ueber-mich.md` (German). When a task involves his life, work, master's study, devices, homelab, plans or agent setup, read it and `~/my-brain/index.md` first instead of asking him again. Rules for the vault: `~/my-brain/AGENTS.md`.\n\n## Communication\n\nOptimize for understanding, inspection, and verification.\n\n- Short, direct sentences. Concrete words. Same term for the same concept.\n- One main idea per sentence. Put conditions before actions when the order matters.\n- Define domain terms once. No filler.\n- Prefer active voice when the actor matters. Do not make prose rigid just to follow these bullets.\n- Pick the representation that makes the structure obvious. Do not default to paragraphs.\n- Prose for simple facts. Tables for comparisons. Diagrams for structure and flow. Timelines for sequences. One view per question.\n- Build a throwaway explainer (HTML, simulator, interactive view) only when prose, a table, or a diagram cannot carry the idea. Do not keep it as product code.\n- Lead with the smallest useful mental model. Implementation detail comes after the structure, and only where it helps.\n- For substantial code changes: say what changed, where, why, what was verified, and what is still uncertain. Explain the resulting system, not a file-by-file diff.\n- When claiming something works, point to evidence (tests, compiler, runtime, measurements, inspected paths). Label facts vs inferences vs assumptions vs open questions.\n- Explanation length follows what the reader needs to verify, not how much work was done.\n\n## Engineering\n\n- For technical decisions, prefer quality, simplicity, robustness, and long-term maintainability over development cost. For one-off ops, take the direct path; add wrappers only when the direct path is blocked or the need repeats.\n- Do not edit generated files (including `CHANGELOG.md`) by hand.\n- If a UI test, lint error, or flaky test looks wrong, fix it when the fix is small; report it when the fix is large.\n- Before a refactor, add tests for the behavior it touches (public interface or E2E) and confirm they pass.\n- Before reporting a non-trivial change as done, have a separate subagent review it against the original request. Report what it found and what you fixed.\n- Verify features with E2E tests of realistic workflows. For web apps that means Playwright in the project suite, not an ad-hoc browser drive. Do not write unit tests that mirror implementation or pad coverage. Use isolated tests only for failure modes that E2E cannot cover; name those failure modes first. Do not add tests after the fact just to justify existing code.\n- Do not use em dashes in drafted prose (PR bodies, review replies, commit messages, comments, docs).\n- Local OpenAI-compatible API: `~/.config/cliproxy/USAGE.md`.\n\n## Maintaining this file\n\n- Keep only knowledge that helps in almost every session.\n- Do not repeat what the code or a skill already says. Point to the source instead.\n- Prefer rewriting or pruning existing entries over appending new ones.\n- Keep entries short.\n",
+    "skills": [
+      {
+        "name": "browseros-neo",
+        "description": "The user's dedicated browser for agents — a real browser signed into their accounts, with live logins and a persistent profile. Use it for any task that touches a website or browser (open, read, act, fill, sign in, download, verify). The user installed it precisely so agents default here unprompted — over in-app browser tools, devtools/playwright automation, or headless fetching. When the user say",
+        "path": "~/.agents/skills/browseros-neo"
+      }
+    ]
+  },
+  "harnesses": [
+    {
+      "id": "pi",
+      "name": "Pi",
+      "binary": "~/.local/bin/pi",
+      "version": "1.4.0",
+      "config_dir": "~/.pi/agent",
+      "default_model": "grok-4.6",
+      "default_provider": "xai",
+      "enabled_models": [
+        "xai/grok-4.6",
+        "opencode-go/muse-spark-1.3-contributor",
+        "opencode-go/deepseek-v4.1-flash",
+        "openai/gpt-6-astra",
+        "openai/gpt-6-luna",
+        "openai/gpt-6.1-sol",
+        "claude-sdk/claude-sonnet-5-5",
+        "claude-sdk/claude-haiku-5-5",
+        "claude-sdk/claude-opus-5-5"
+      ],
+      "packages": [
+        "~/.local/share/pi-packages/pi-subagents/0.22.0-pins-context-bcd1de935503",
+        "npm:pi-ask-user@0.17.0",
+        "~/.local/share/pi-packages/pi-tasks/shell-controls-7f7de6f0a62f",
+        "~/.local/share/pi-packages/fff/f85f3a851a53362b088840f5816755f9fd3c692c/packages/pi-fff",
+        "npm:@narumitw/pi-file-context@0.54.4",
+        "git:github.com/Fatih0234/pi-async-bash@2b715ff93ff663336425144c12ec695add0f2b81",
+        "~/.local/share/pi-packages/pi-claude-subscription/0.2.4-diag-d10-02957349bfe9",
+        "~/.local/share/pi-packages/pi-pstack-mode/u1-965c950b90fd"
+      ],
+      "instruction_files": [
+        {
+          "path": "~/.agents/AGENTS.md",
+          "via": "symlink ~/.pi/agent/AGENTS.md"
+        },
+        {
+          "path": "~/.pi/agent/APPEND_SYSTEM.md",
+          "via": "Pi append-system"
+        }
+      ],
+      "subagents": [
+        "Explore.md",
+        "Plan.md",
+        "auditor.md",
+        "comment-sicko.md",
+        "debugger.md",
+        "general-purpose.md",
+        "implementer.md",
+        "poteto-agent.md",
+        "reviewer.md"
+      ],
+      "extensions": [
+        "grok-notify.ts",
+        "herdr-agent-state.ts",
+        "pi-notify.ts",
+        "split-fork.ts"
+      ],
+      "skills": [
+        {
+          "name": "agent-browser",
+          "description": "Drive a real headless Chrome with the installed agent-browser CLI. Use to interact with or visually check a web page or a local web app, such as clicking, filling forms, taking screenshots, reading console errors, recording network traffic, running accessibility audits, or ad-hoc checks of a UI. Do not use for plain web search or reading documentation pages; use tinyfish-web for those. Do not use ",
+          "path": "~/.pi/agent/skills/agent-browser"
+        },
+        {
+          "name": "my-brain",
+          "description": "The user's personal second brain, an Obsidian Markdown vault at ~/my-brain. Use when the user asks to save, remember, capture, note down, organize, or look up something in \"my brain\", \"my notes\", \"my vault\", \"second brain\" or Obsidian; to record or read a project's status and next steps; or when earlier knowledge or decisions may be in the notes.",
+          "path": "~/.pi/agent/skills/my-brain"
+        },
+        {
+          "name": "tinyfish-web",
+          "description": "Search the web and fetch clean page content with the installed TinyFish CLI. Use for web searches, current information, finding documentation, reading or summarizing URLs, comparing web sources, and source-backed fact checks. Search and Fetch only; no paid automation or other TinyFish services.",
+          "path": "~/.pi/agent/skills/tinyfish-web"
+        }
+      ],
+      "instruction_text": {
+        "APPEND_SYSTEM.md": "# Explaining knowledge in Pi's terminal\n\nThese rules apply on top of AGENTS.md. They are about this terminal, not about which facts to include.\n\n- A visual is not required. If you use one, it answers one question. Details live in the prose around it, not inside the nodes.\n- Label arrows when direction alone is unclear (read vs write, control vs data). Do not draw an unverified relationship as a fact.\n- Do not restate the visual in paragraphs. State the takeaway and the caveats.\n- Keep diagrams and tables narrow enough for a pane. Prefer vertical flow when width is tight. Split at a meaningful boundary; do not shrink labels or cross lines.\n- Use fenced `text` blocks. Do not assume Mermaid, HTML, or other diagram source will render. Prefer plain ASCII if alignment might break.\n- Keep chart rows visually separate (full-height block characters merge). Include units or scales. Do not rely on color or emoji alone.\n- In the terminal, do not spawn a widget or custom UI to decorate an answer. Prefer a `text` diagram or table in the chat.\n- Before sending: can the reader get the main point without decoding the layout? If not, simplify or split. Do not drop essential meaning just to make a visual fit.\n"
+      }
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "binary": "~/.opencode/bin/opencode",
+      "version": "opencode v2.1.4",
+      "config_dir": "~/.config/opencode",
+      "instruction_files": [
+        "~/.agents/AGENTS.md",
+        "~/.config/opencode/opencode.md",
+        "~/.config/opencode/instructions/pstack.md",
+        "~/.config/opencode/instructions/pstack-models.md"
+      ],
+      "config_skills": [
+        "~/.config/opencode/pstack-overlay/skills",
+        "~/playground/plugins/cursor-team-kit/skills/deslop",
+        "~/playground/plugins/cursor-team-kit/skills/control-cli",
+        "~/playground/plugins/cursor-team-kit/skills/control-ui"
+      ],
+      "agents": {
+        "general": {
+          "model": "openai/gpt-6-luna#max"
+        },
+        "explore": {
+          "model": "openai/gpt-6-luna#max"
+        }
+      },
+      "mcp_server_names": [
+        "browseros-neo"
+      ],
+      "instruction_text": {
+        "opencode.md": "# OpenCode instructions\n\nThese rules add to the shared agent instructions. They cover how the OpenCode\nterminal UI presents information and how to choose a representation.\n\n## Terminal rendering\n\nThe OpenCode TUI renders Markdown and several code fence types:\n\n- Tables render as aligned terminal tables.\n- Code fences render with syntax highlighting when the tag names a\n  language. Tag every fence, including plain output. Use `text` for ASCII\n  charts, tables, and transcripts.\n- `mermaid` fences render as terminal diagrams. Supported diagrams:\n  `flowchart`, `sequence`, `state`, `gantt`, `gitGraph`, `timeline`.\n- `latex` and `math` fences render as terminal math.\n- Headings, bold, italic, lists, quotes, and inline code render as styled\n  text.\n\nUnsupported Mermaid diagram types and raw HTML fall back to source text.\n\n## Choosing a representation\n\n- Use a table when items share the same fields.\n- Use a Mermaid diagram for flows, dependencies, state machines, sequences,\n  and timelines. Keep diagrams narrow: terminal width limits layout. Use\n  short node labels, state the direction explicitly (`flowchart TD`), and\n  avoid deep nesting. Split a large diagram instead of shrinking labels.\n- Use a tagged code fence when exact commands, configuration, or output\n  matter. Use `diff` fences for patches.\n- Use inline code for paths, commands, identifiers, and values.\n- Keep prose and visuals complementary. Do not repeat a table or diagram in\n  paragraphs.\n- Write interactive artifacts to a file and give the reader the path and the\n  command to open it. The transcript cannot run HTML, CSS, or JavaScript.\n- Mermaid parse failures fall back to source text. Ask the reader to confirm\n  the rendering when a diagram is hard to predict.\n"
+      },
+      "skills": [
+        {
+          "name": "browseros-neo",
+          "description": "The user's dedicated browser for agents — a real browser signed into their accounts, with live logins and a persistent profile. Use it for any task that touches a website or browser (open, read, act, fill, sign in, download, verify). The user installed it precisely so agents default here unprompted — over in-app browser tools, devtools/playwright automation, or headless fetching. When the user say",
+          "path": "~/.config/opencode/skills/browseros-neo"
+        }
+      ]
+    },
+    {
+      "id": "delta",
+      "name": "Delta",
+      "binary": "~/.local/bin/delta",
+      "version": "delta 0.21.0",
+      "config_dir": "~/.config/delta",
+      "instruction_files": [
+        "~/.config/delta/AGENTS.md"
+      ],
+      "instruction_text": {
+        "AGENTS.md": "# Personal agent instructions\n\n## Communication\n\n- Use short, direct sentences and concrete terms. Prefer active voice.\n- Use the same term for the same concept. Define unfamiliar abbreviations.\n- Put one main idea in each sentence. Avoid filler and unnecessary repetition.\n- Use natural technical English rather than rigid simplified language.\n- Do not use em dashes.\n\n## Explanation\n\n- Answer the central question first. Lead with the outcome and the\n  smallest useful mental model.\n- Include secondary workflows, shortcuts, and implementation details only\n  when they change the answer or the user asks for them.\n- Use multiple representations only when each adds distinct understanding.\n- Prefer a well-fit visual over paragraphs that describe the same\n  relationships. Use diagrams for structure, flows, dependencies, and\n  state transitions; tables for comparisons; concise prose for simple facts.\n- Make visuals accurate and easy to scan. Give arrows clear meanings,\n  keep labels short, and preserve important boundaries.\n- Add only the prose needed to interpret the visual. Do not repeat its\n  contents in paragraphs.\n- Do not force a visual when a short answer is clearer.\n- Create a small interactive explanation only when it materially reduces\n  cognitive load. Do not create artifacts merely because you can.\n- Explain the resulting system before describing individual edits.\n- Keep explanations proportional to what the reader needs to understand\n  and verify, not to the amount of work performed.\n- For substantial changes, explain what changed, why, important boundaries,\n  assumptions, tradeoffs, verification, and remaining uncertainty.\n- Distinguish verified facts, inferences, assumptions, and unresolved questions.\n- Support claims with tests, runtime output, measurements, inspected code,\n  or relevant documentation.\n\n## Engineering\n\n- Prefer quality, simplicity, robustness, and long-term maintainability over\n  short-term development cost.\n- For infrequent operational work, use the simplest direct approach.\n  Add automation only for a concrete blocker or a repeated need.\n- Do not edit generated files, including generated changelogs, by hand.\n- Before refactoring, check coverage of the affected behavior. If coverage\n  is missing, add tests at the public interface or E2E level and confirm\n  they pass before changing the implementation.\n- Prefer realistic E2E workflows as the primary verification for features.\n  When practical, produce repeatable, independently inspectable artifacts.\n- Use unit, property-based, or isolated tests for important edge cases,\n  invariants, combinations, and failure modes that E2E tests cannot\n  practically cover.\n- Before writing isolated tests, identify the important failure modes.\n  Test intended behavior, not incidental implementation details.\n- During UI testing, inspect visual quality as well as functionality.\n  Fix small adjacent defects when safe. Report larger unrelated problems\n  instead of expanding scope. Apply the same judgment to lint failures,\n  test failures, and flaky tests.\n- Before completing a non-trivial change, seek an adversarial review from\n  a separate reviewer agent when delegation is authorized. Otherwise,\n  ask for permission. Report findings, fixes, and any review not performed.\n\n## Tools and local guidance\n\n- Use the unslop skill for drafted prose when it is available.\n  If unavailable, still follow the writing rules above.\n- For tasks involving the local CLIProxyAPI service, consult\n  ~/.config/cliproxy/USAGE.md. Do not assume the service is available\n  on another participant's machine or in a remote runtime.\n\n## Maintaining these instructions\n\n- Keep only guidance useful in almost every session.\n- Do not repeat project instructions or skill contents.\n- Prefer rewriting and pruning over appending.\n- Keep entries short.\n"
+      },
+      "note": "Personal AGENTS.md is not the shared ~/.agents/AGENTS.md."
+    },
+    {
+      "id": "claude",
+      "name": "Claude Code",
+      "binary": "~/.local/bin/claude",
+      "version": "2.1.310 (Claude Code)",
+      "config_dir": "~/.claude",
+      "model": "opus",
+      "instruction_files": [
+        "~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md)"
+      ],
+      "instruction_text": {
+        "CLAUDE.md": "<!-- Shared agent instructions live in ~/.agents/AGENTS.md. Edit that file, not this one. -->\n@~/.agents/AGENTS.md\n"
+      },
+      "skills": [
+        {
+          "name": "diagnosing-bugs",
+          "description": "Diagnosis loop for hard bugs and performance regressions. Use when the user says \"diagnose\"/\"debug this\", or reports something broken/throwing/failing/slow.",
+          "path": "~/.claude/skills/diagnosing-bugs"
+        },
+        {
+          "name": "browseros-neo",
+          "description": "The user's dedicated browser for agents — a real browser signed into their accounts, with live logins and a persistent profile. Use it for any task that touches a website or browser (open, read, act, fill, sign in, download, verify). The user installed it precisely so agents default here unprompted — over in-app browser tools, devtools/playwright automation, or headless fetching. When the user say",
+          "path": "~/.agents/skills/browseros-neo"
+        }
+      ]
+    },
+    {
+      "id": "codex",
+      "name": "Codex",
+      "binary": "~/.local/bin/codex",
+      "version": "codex-cli 0.163.0",
+      "config_dir": "~/.codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "instruction_files": [
+        "~/.codex/AGENTS.md -> ~/.agents/AGENTS.md"
+      ],
+      "skills": [
+        {
+          "name": "browseros-neo",
+          "description": "The user's dedicated browser for agents — a real browser signed into their accounts, with live logins and a persistent profile. Use it for any task that touches a website or browser (open, read, act, fill, sign in, download, verify). The user installed it precisely so agents default here unprompted — over in-app browser tools, devtools/playwright automation, or headless fetching. When the user say",
+          "path": "~/.agents/skills/browseros-neo"
+        }
+      ]
+    }
+  ]
+}
