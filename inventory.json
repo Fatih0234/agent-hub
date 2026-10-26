@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T12:29:53Z",
+  "generated_at": "2026-10-26T12:30:24Z",
   "purpose": "Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.",
   "shared": {
     "repo": "https://github.com/Fatih0234/agents",
@@ -18,7 +18,7 @@
       "id": "pi",
       "name": "Pi",
       "binary": "~/.local/bin/pi",
-      "version": "1.4.0",
+      "version": "env: 'node': No such file or directory",
       "config_dir": "~/.pi/agent",
       "default_model": "grok-4.6",
       "default_provider": "xai",
@@ -94,8 +94,8 @@
     {
       "id": "opencode",
       "name": "OpenCode",
-      "binary": "~/.opencode/bin/opencode",
-      "version": "opencode v2.1.4",
+      "binary": null,
+      "version": null,
       "config_dir": "~/.config/opencode",
       "instruction_files": [
         "~/.agents/AGENTS.md",
