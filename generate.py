@@ -450,6 +450,12 @@ def render(data: dict) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
+def without_time(data: dict) -> dict:
+    copy = json.loads(json.dumps(data))
+    copy.pop("generated_at", None)
+    return copy
+
+
 def git_push_if_changed() -> None:
     def git(args: list[str]) -> subprocess.CompletedProcess:
         return subprocess.run(
@@ -459,7 +465,7 @@ def git_push_if_changed() -> None:
             text=True,
         )
 
-    git(["add", "README.md", "inventory.json", "generate.py", "SECURITY.md", ".gitignore"])
+    git(["add", "README.md", "inventory.json"])
     diff = git(["diff", "--cached", "--quiet"])
     if diff.returncode == 0:
         return
@@ -480,6 +486,14 @@ def main() -> None:
     args = parser.parse_args()
     os.chdir(ROOT)
     data = collect()
+    previous = {}
+    if INVENTORY.is_file():
+        try:
+            previous = without_time(json.loads(INVENTORY.read_text(encoding="utf-8")))
+        except json.JSONDecodeError:
+            previous = {}
+    if without_time(data) == previous:
+        return
     README.write_text(render(data), encoding="utf-8")
     INVENTORY.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     if args.push:
