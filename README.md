@@ -2,7 +2,7 @@
 
 # Agent hub
 
-Generated: `2026-10-26T12:30:52Z` (UTC).
+Generated: `2026-10-26T19:50:18Z` (UTC).
 
 Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.
 
@@ -20,7 +20,7 @@ Live files stay on the machine. This repo is only the published view.
 | OpenCode | opencode v2.1.4 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md; ~/.config/opencode/instructions/pstack.md; ~/.config/opencode/instructions/pstack-models.md | `openai/gpt-6-luna#max` |
 | Delta | delta 0.21.0 | `~/.config/delta` | ~/.config/delta/AGENTS.md | `—` |
 | Claude Code | 2.1.310 (Claude Code) | `~/.claude` | ~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md) | `opus` |
-| Codex | codex-cli 0.163.0 | `~/.codex` | ~/.codex/AGENTS.md -> ~/.agents/AGENTS.md | `gpt-6.1-sol` |
+| Codex | codex-cli 0.164.0 | `~/.codex` | ~/.codex/AGENTS.md -> ~/.agents/AGENTS.md | `gpt-6.1-terra` |
 
 ## Shared layer (`~/.agents`)
 
@@ -280,7 +280,7 @@ Unsupported Mermaid diagram types and raw HTML fall back to source text.
 ## Codex
 
 - Binary: `~/.local/bin/codex`
-- Version: `codex-cli 0.163.0`
+- Version: `codex-cli 0.164.0`
 - Config: `~/.codex`
 ## How this file is updated
 

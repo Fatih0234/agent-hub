@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T12:30:52Z",
+  "generated_at": "2026-10-26T19:50:18Z",
   "purpose": "Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.",
   "shared": {
     "repo": "https://github.com/Fatih0234/agents",
@@ -175,10 +175,10 @@
       "id": "codex",
       "name": "Codex",
       "binary": "~/.local/bin/codex",
-      "version": "codex-cli 0.163.0",
+      "version": "codex-cli 0.164.0",
       "config_dir": "~/.codex",
-      "model": "gpt-6.1-sol",
-      "reasoning_effort": "medium",
+      "model": "gpt-6.1-terra",
+      "reasoning_effort": "high",
       "instruction_files": [
         "~/.codex/AGENTS.md -> ~/.agents/AGENTS.md"
       ],
