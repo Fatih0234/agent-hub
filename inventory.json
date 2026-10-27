@@ -1,17 +1,11 @@
 {
-  "generated_at": "2026-10-27T09:23:24Z",
+  "generated_at": "2026-10-27T15:23:24Z",
   "purpose": "Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.",
   "shared": {
     "repo": "https://github.com/Fatih0234/agents",
     "path": "~/.agents",
     "AGENTS.md": "## About the user\n\nThe user's profile is in `~/my-brain/About/ueber-mich.md` (German). When a task involves his life, work, master's study, devices, homelab, plans or agent setup, read it and `~/my-brain/index.md` first instead of asking him again. Rules for the vault: `~/my-brain/AGENTS.md`.\n\n## Communication\n\nOptimize for understanding, inspection, and verification.\n\n- Short, direct sentences. Concrete words. Same term for the same concept.\n- One main idea per sentence. Put conditions before actions when the order matters.\n- Define domain terms once. No filler.\n- Prefer active voice when the actor matters. Do not make prose rigid just to follow these bullets.\n- Pick the representation that makes the structure obvious. Do not default to paragraphs.\n- Prose for simple facts. Tables for comparisons. Diagrams for structure and flow. Timelines for sequences. One view per question.\n- Build a throwaway explainer (HTML, simulator, interactive view) only when prose, a table, or a diagram cannot carry the idea. Do not keep it as product code.\n- Lead with the smallest useful mental model. Implementation detail comes after the structure, and only where it helps.\n- For substantial code changes: say what changed, where, why, what was verified, and what is still uncertain. Explain the resulting system, not a file-by-file diff.\n- When claiming something works, point to evidence (tests, compiler, runtime, measurements, inspected paths). Label facts vs inferences vs assumptions vs open questions.\n- Explanation length follows what the reader needs to verify, not how much work was done.\n\n## Engineering\n\n- For technical decisions, prefer quality, simplicity, robustness, and long-term maintainability over development cost. For one-off ops, take the direct path; add wrappers only when the direct path is blocked or the need repeats.\n- Do not edit generated files (including `CHANGELOG.md`) by hand.\n- If a UI test, lint error, or flaky test looks wrong, fix it when the fix is small; report it when the fix is large.\n- Before a refactor, add tests for the behavior it touches (public interface or E2E) and confirm they pass.\n- Before reporting a non-trivial change as done, have a separate subagent review it against the original request. Report what it found and what you fixed.\n- Verify features with E2E tests of realistic workflows. For web apps that means Playwright in the project suite, not an ad-hoc browser drive. Do not write unit tests that mirror implementation or pad coverage. Use isolated tests only for failure modes that E2E cannot cover; name those failure modes first. Do not add tests after the fact just to justify existing code.\n- Do not use em dashes in drafted prose (PR bodies, review replies, commit messages, comments, docs).\n- Local OpenAI-compatible API: `~/.config/cliproxy/USAGE.md`.\n\n## Maintaining this file\n\n- Keep only knowledge that helps in almost every session.\n- Do not repeat what the code or a skill already says. Point to the source instead.\n- Prefer rewriting or pruning existing entries over appending new ones.\n- Keep entries short.\n",
-    "skills": [
-      {
-        "name": "browseros-neo",
-        "description": "The user's dedicated browser for agents — a real browser signed into their accounts, with live logins and a persistent profile. Use it for any task that touches a website or browser (open, read, act, fill, sign in, download, verify). The user installed it precisely so agents default here unprompted — over in-app browser tools, devtools/playwright automation, or headless fetching. When the user say",
-        "path": "~/.agents/skills/browseros-neo"
-      }
-    ]
+    "skills": []
   },
   "harnesses": [
     {
@@ -96,16 +90,13 @@
       "id": "opencode",
       "name": "OpenCode",
       "binary": "~/.opencode/bin/opencode",
-      "version": "opencode v2.1.4",
+      "version": "opencode v2.2.0",
       "config_dir": "~/.config/opencode",
       "instruction_files": [
         "~/.agents/AGENTS.md",
-        "~/.config/opencode/opencode.md",
-        "~/.config/opencode/instructions/pstack.md",
-        "~/.config/opencode/instructions/pstack-models.md"
+        "~/.config/opencode/opencode.md"
       ],
       "config_skills": [
-        "~/.config/opencode/pstack-overlay/skills",
         "~/playground/plugins/cursor-team-kit/skills/deslop",
         "~/playground/plugins/cursor-team-kit/skills/control-cli",
         "~/playground/plugins/cursor-team-kit/skills/control-ui"
@@ -118,19 +109,11 @@
           "model": "openai/gpt-6-luna#max"
         }
       },
-      "mcp_server_names": [
-        "browseros-neo"
-      ],
+      "mcp_server_names": [],
       "instruction_text": {
         "opencode.md": "# OpenCode instructions\n\nThese rules add to the shared agent instructions. They cover how the OpenCode\nterminal UI presents information and how to choose a representation.\n\n## Terminal rendering\n\nThe OpenCode TUI renders Markdown and several code fence types:\n\n- Tables render as aligned terminal tables.\n- Code fences render with syntax highlighting when the tag names a\n  language. Tag every fence, including plain output. Use `text` for ASCII\n  charts, tables, and transcripts.\n- `mermaid` fences render as terminal diagrams. Supported diagrams:\n  `flowchart`, `sequence`, `state`, `gantt`, `gitGraph`, `timeline`.\n- `latex` and `math` fences render as terminal math.\n- Headings, bold, italic, lists, quotes, and inline code render as styled\n  text.\n\nUnsupported Mermaid diagram types and raw HTML fall back to source text.\n\n## Choosing a representation\n\n- Use a table when items share the same fields.\n- Use a Mermaid diagram for flows, dependencies, state machines, sequences,\n  and timelines. Keep diagrams narrow: terminal width limits layout. Use\n  short node labels, state the direction explicitly (`flowchart TD`), and\n  avoid deep nesting. Split a large diagram instead of shrinking labels.\n- Use a tagged code fence when exact commands, configuration, or output\n  matter. Use `diff` fences for patches.\n- Use inline code for paths, commands, identifiers, and values.\n- Keep prose and visuals complementary. Do not repeat a table or diagram in\n  paragraphs.\n- Write interactive artifacts to a file and give the reader the path and the\n  command to open it. The transcript cannot run HTML, CSS, or JavaScript.\n- Mermaid parse failures fall back to source text. Ask the reader to confirm\n  the rendering when a diagram is hard to predict.\n"
       },
-      "skills": [
-        {
-          "name": "browseros-neo",
-          "description": "The user's dedicated browser for agents — a real browser signed into their accounts, with live logins and a persistent profile. Use it for any task that touches a website or browser (open, read, act, fill, sign in, download, verify). The user installed it precisely so agents default here unprompted — over in-app browser tools, devtools/playwright automation, or headless fetching. When the user say",
-          "path": "~/.config/opencode/skills/browseros-neo"
-        }
-      ]
+      "skills": []
     },
     {
       "id": "delta",
@@ -164,11 +147,6 @@
           "name": "diagnosing-bugs",
           "description": "Diagnosis loop for hard bugs and performance regressions. Use when the user says \"diagnose\"/\"debug this\", or reports something broken/throwing/failing/slow.",
           "path": "~/.claude/skills/diagnosing-bugs"
-        },
-        {
-          "name": "browseros-neo",
-          "description": "The user's dedicated browser for agents — a real browser signed into their accounts, with live logins and a persistent profile. Use it for any task that touches a website or browser (open, read, act, fill, sign in, download, verify). The user installed it precisely so agents default here unprompted — over in-app browser tools, devtools/playwright automation, or headless fetching. When the user say",
-          "path": "~/.agents/skills/browseros-neo"
         }
       ]
     },
@@ -183,13 +161,7 @@
       "instruction_files": [
         "~/.codex/AGENTS.md -> ~/.agents/AGENTS.md"
       ],
-      "skills": [
-        {
-          "name": "browseros-neo",
-          "description": "The user's dedicated browser for agents — a real browser signed into their accounts, with live logins and a persistent profile. Use it for any task that touches a website or browser (open, read, act, fill, sign in, download, verify). The user installed it precisely so agents default here unprompted — over in-app browser tools, devtools/playwright automation, or headless fetching. When the user say",
-          "path": "~/.agents/skills/browseros-neo"
-        }
-      ]
+      "skills": []
     }
   ]
 }

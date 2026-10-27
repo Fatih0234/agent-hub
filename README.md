@@ -2,7 +2,7 @@
 
 # Agent hub
 
-Generated: `2026-10-27T09:23:24Z` (UTC).
+Generated: `2026-10-27T15:23:24Z` (UTC).
 
 Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.
 
@@ -17,7 +17,7 @@ Live files stay on the machine. This repo is only the published view.
 | Harness | Version | Config | Standing instructions | Default model |
 |---|---|---|---|---|
 | Pi | 1.4.0 | `~/.pi/agent` | ~/.agents/AGENTS.md; ~/.pi/agent/APPEND_SYSTEM.md | `grok-4.6` |
-| OpenCode | opencode v2.1.4 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md; ~/.config/opencode/instructions/pstack.md; ~/.config/opencode/instructions/pstack-models.md | `openai/gpt-6-luna#max` |
+| OpenCode | opencode v2.2.0 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md | `openai/gpt-6-luna#max` |
 | Delta | delta 0.21.0 | `~/.config/delta` | ~/.config/delta/AGENTS.md | `—` |
 | Claude Code | 2.1.311 (Claude Code) | `~/.claude` | ~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md) | `opus` |
 | Codex | codex-cli 0.164.0 | `~/.codex` | ~/.codex/AGENTS.md -> ~/.agents/AGENTS.md | `gpt-6.1-terra` |
@@ -28,9 +28,7 @@ Source repo (private): https://github.com/Fatih0234/agents
 
 Skills visible to every harness that reads `~/.agents/skills`:
 
-| Skill | Description |
-|---|---|
-| `browseros-neo` | The user's dedicated browser for agents — a real browser signed into their accounts, with live logins and a persistent profile. Use it for any task that touches a website or browser (open, read, act, fill, sign in, download, verify). The user installed it precisely so agents default here unprompted — over in-app browser tools, devtools/playwright automation, or headless fetching. When the user say |
+_No shared skills found._
 
 ### Shared `AGENTS.md`
 
@@ -119,13 +117,11 @@ These rules apply on top of AGENTS.md. They are about this terminal, not about w
 ## OpenCode
 
 - Binary: `~/.opencode/bin/opencode`
-- Version: `opencode v2.1.4`
+- Version: `opencode v2.2.0`
 - Config: `~/.config/opencode`
 - Agent `general` model: `openai/gpt-6-luna#max`
 - Agent `explore` model: `openai/gpt-6-luna#max`
-- MCP servers (names only): `browseros-neo`
 - Config skill paths:
-  - `~/.config/opencode/pstack-overlay/skills`
   - `~/playground/plugins/cursor-team-kit/skills/deslop`
   - `~/playground/plugins/cursor-team-kit/skills/control-cli`
   - `~/playground/plugins/cursor-team-kit/skills/control-ui`
