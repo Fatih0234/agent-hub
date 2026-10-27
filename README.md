@@ -2,7 +2,7 @@
 
 # Agent hub
 
-Generated: `2026-10-26T19:50:18Z` (UTC).
+Generated: `2026-10-27T09:23:24Z` (UTC).
 
 Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.
 
@@ -19,7 +19,7 @@ Live files stay on the machine. This repo is only the published view.
 | Pi | 1.4.0 | `~/.pi/agent` | ~/.agents/AGENTS.md; ~/.pi/agent/APPEND_SYSTEM.md | `grok-4.6` |
 | OpenCode | opencode v2.1.4 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md; ~/.config/opencode/instructions/pstack.md; ~/.config/opencode/instructions/pstack-models.md | `openai/gpt-6-luna#max` |
 | Delta | delta 0.21.0 | `~/.config/delta` | ~/.config/delta/AGENTS.md | `—` |
-| Claude Code | 2.1.310 (Claude Code) | `~/.claude` | ~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md) | `opus` |
+| Claude Code | 2.1.311 (Claude Code) | `~/.claude` | ~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md) | `opus` |
 | Codex | codex-cli 0.164.0 | `~/.codex` | ~/.codex/AGENTS.md -> ~/.agents/AGENTS.md | `gpt-6.1-terra` |
 
 ## Shared layer (`~/.agents`)
@@ -81,7 +81,7 @@ Optimize for understanding, inspection, and verification.
 - Version: `1.4.0`
 - Config: `~/.pi/agent`
 - Provider: `xai`
-- Enabled models: `xai/grok-4.6`, `opencode-go/muse-spark-1.3-contributor`, `opencode-go/deepseek-v4.1-flash`, `openai/gpt-6-astra`, `openai/gpt-6-luna`, `openai/gpt-6.1-sol`, `claude-sdk/claude-sonnet-5-5`, `claude-sdk/claude-haiku-5-5`, `claude-sdk/claude-opus-5-5`
+- Enabled models: `xai/grok-4.6`, `opencode-go/muse-spark-1.3-contributor`, `opencode-go/deepseek-v4.1-flash`, `openai/gpt-6-astra`, `openai/gpt-6-luna`, `openai/gpt-6.1-sol`, `openai/gpt-6.1-terra`, `claude-sdk/claude-sonnet-5-5`, `claude-sdk/claude-haiku-5-5`, `claude-sdk/claude-opus-5-5`
 - Packages:
   - `~/.local/share/pi-packages/pi-subagents/0.22.0-pins-context-bcd1de935503`
   - `npm:pi-ask-user@0.17.0`
@@ -90,7 +90,7 @@ Optimize for understanding, inspection, and verification.
   - `npm:@narumitw/pi-file-context@0.54.4`
   - `git:github.com/Fatih0234/pi-async-bash@2b715ff93ff663336425144c12ec695add0f2b81`
   - `~/.local/share/pi-packages/pi-claude-subscription/0.2.4-diag-d10-02957349bfe9`
-  - `~/.local/share/pi-packages/pi-pstack-mode/u1-965c950b90fd`
+  - `git:github.com/Fatih0234/pi-pstack-mode@f252fb10237c0442ac556bf5c877ea8621da5171`
 - Subagents: `Explore.md`, `Plan.md`, `auditor.md`, `comment-sicko.md`, `debugger.md`, `general-purpose.md`, `implementer.md`, `poteto-agent.md`, `reviewer.md`
 - Extensions: `grok-notify.ts`, `herdr-agent-state.ts`, `pi-notify.ts`, `split-fork.ts`
 - Extra skills:
@@ -264,7 +264,7 @@ Unsupported Mermaid diagram types and raw HTML fall back to source text.
 ## Claude Code
 
 - Binary: `~/.local/bin/claude`
-- Version: `2.1.310 (Claude Code)`
+- Version: `2.1.311 (Claude Code)`
 - Config: `~/.claude`
 - Extra skills:
   - `diagnosing-bugs`: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T19:50:18Z",
+  "generated_at": "2026-10-27T09:23:24Z",
   "purpose": "Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.",
   "shared": {
     "repo": "https://github.com/Fatih0234/agents",
@@ -29,6 +29,7 @@
         "openai/gpt-6-astra",
         "openai/gpt-6-luna",
         "openai/gpt-6.1-sol",
+        "openai/gpt-6.1-terra",
         "claude-sdk/claude-sonnet-5-5",
         "claude-sdk/claude-haiku-5-5",
         "claude-sdk/claude-opus-5-5"
@@ -41,7 +42,7 @@
         "npm:@narumitw/pi-file-context@0.54.4",
         "git:github.com/Fatih0234/pi-async-bash@2b715ff93ff663336425144c12ec695add0f2b81",
         "~/.local/share/pi-packages/pi-claude-subscription/0.2.4-diag-d10-02957349bfe9",
-        "~/.local/share/pi-packages/pi-pstack-mode/u1-965c950b90fd"
+        "git:github.com/Fatih0234/pi-pstack-mode@f252fb10237c0442ac556bf5c877ea8621da5171"
       ],
       "instruction_files": [
         {
@@ -149,7 +150,7 @@
       "id": "claude",
       "name": "Claude Code",
       "binary": "~/.local/bin/claude",
-      "version": "2.1.310 (Claude Code)",
+      "version": "2.1.311 (Claude Code)",
       "config_dir": "~/.claude",
       "model": "opus",
       "instruction_files": [
