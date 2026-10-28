@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T23:27:26Z",
+  "generated_at": "2026-10-28T23:45:08Z",
   "purpose": "Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.",
   "shared": {
     "repo": "https://github.com/Fatih0234/agents",
@@ -99,10 +99,10 @@
       "config_skills": [],
       "agents": {
         "general": {
-          "model": "openai/gpt-6-luna#max"
+          "model": "opencode-go/deepseek-v4.1-flash#max"
         },
         "explore": {
-          "model": "openai/gpt-6-luna#max"
+          "model": "opencode-go/deepseek-v4.1-flash#max"
         }
       },
       "mcp_server_names": [],
@@ -135,7 +135,7 @@
       "id": "claude",
       "name": "Claude Code",
       "binary": "~/.local/bin/claude",
-      "version": "2.1.311 (Claude Code)",
+      "version": "2.1.312 (Claude Code)",
       "config_dir": "~/.claude",
       "model": "opus",
       "instruction_files": [

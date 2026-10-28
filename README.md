@@ -2,7 +2,7 @@
 
 # Agent hub
 
-Generated: `2026-10-27T23:27:26Z` (UTC).
+Generated: `2026-10-28T23:45:08Z` (UTC).
 
 Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.
 
@@ -17,9 +17,9 @@ Live files stay on the machine. This repo is only the published view.
 | Harness | Version | Config | Standing instructions | Default model |
 |---|---|---|---|---|
 | Pi | 1.4.0 | `~/.pi/agent` | ~/.agents/AGENTS.md; ~/.pi/agent/APPEND_SYSTEM.md | `grok-4.6` |
-| OpenCode | opencode v2.2.0 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md | `openai/gpt-6-luna#max` |
+| OpenCode | opencode v2.2.0 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md | `opencode-go/deepseek-v4.1-flash#max` |
 | Delta | delta 0.21.0 | `~/.config/delta` | ~/.config/delta/AGENTS.md | `—` |
-| Claude Code | 2.1.311 (Claude Code) | `~/.claude` | ~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md) | `opus` |
+| Claude Code | 2.1.312 (Claude Code) | `~/.claude` | ~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md) | `opus` |
 | Codex | codex-cli 0.164.0 | `~/.codex` | ~/.codex/AGENTS.md -> ~/.agents/AGENTS.md | `gpt-6.1-terra` |
 
 ## Shared layer (`~/.agents`)
@@ -119,8 +119,8 @@ These rules apply on top of AGENTS.md. They are about this terminal, not about w
 - Binary: `~/.opencode/bin/opencode`
 - Version: `opencode v2.2.0`
 - Config: `~/.config/opencode`
-- Agent `general` model: `openai/gpt-6-luna#max`
-- Agent `explore` model: `openai/gpt-6-luna#max`
+- Agent `general` model: `opencode-go/deepseek-v4.1-flash#max`
+- Agent `explore` model: `opencode-go/deepseek-v4.1-flash#max`
 - Extra skills:
   - `agent-browser-desktop`: Drive the shared, manually authenticated agent-browser profile for sites that need its logged-in session, especially ChatGPT and GitHub. Use for opening those sites, checking account pages, or interacting with a logged-in web app in a real browser. Do not use for public browsing, documentation lookup, web search, or project E2E tests.
 
@@ -258,7 +258,7 @@ Unsupported Mermaid diagram types and raw HTML fall back to source text.
 ## Claude Code
 
 - Binary: `~/.local/bin/claude`
-- Version: `2.1.311 (Claude Code)`
+- Version: `2.1.312 (Claude Code)`
 - Config: `~/.claude`
 
 ### Claude Code: `CLAUDE.md`
