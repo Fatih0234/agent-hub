@@ -2,7 +2,7 @@
 
 # Agent hub
 
-Generated: `2026-10-27T15:23:24Z` (UTC).
+Generated: `2026-10-27T23:27:26Z` (UTC).
 
 Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.
 
@@ -121,10 +121,8 @@ These rules apply on top of AGENTS.md. They are about this terminal, not about w
 - Config: `~/.config/opencode`
 - Agent `general` model: `openai/gpt-6-luna#max`
 - Agent `explore` model: `openai/gpt-6-luna#max`
-- Config skill paths:
-  - `~/playground/plugins/cursor-team-kit/skills/deslop`
-  - `~/playground/plugins/cursor-team-kit/skills/control-cli`
-  - `~/playground/plugins/cursor-team-kit/skills/control-ui`
+- Extra skills:
+  - `agent-browser-desktop`: Drive the shared, manually authenticated agent-browser profile for sites that need its logged-in session, especially ChatGPT and GitHub. Use for opening those sites, checking account pages, or interacting with a logged-in web app in a real browser. Do not use for public browsing, documentation lookup, web search, or project E2E tests.
 
 ### OpenCode: `opencode.md`
 
@@ -262,8 +260,6 @@ Unsupported Mermaid diagram types and raw HTML fall back to source text.
 - Binary: `~/.local/bin/claude`
 - Version: `2.1.311 (Claude Code)`
 - Config: `~/.claude`
-- Extra skills:
-  - `diagnosing-bugs`: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
 
 ### Claude Code: `CLAUDE.md`
 

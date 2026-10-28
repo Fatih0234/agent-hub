@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T15:23:24Z",
+  "generated_at": "2026-10-27T23:27:26Z",
   "purpose": "Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.",
   "shared": {
     "repo": "https://github.com/Fatih0234/agents",
@@ -96,11 +96,7 @@
         "~/.agents/AGENTS.md",
         "~/.config/opencode/opencode.md"
       ],
-      "config_skills": [
-        "~/playground/plugins/cursor-team-kit/skills/deslop",
-        "~/playground/plugins/cursor-team-kit/skills/control-cli",
-        "~/playground/plugins/cursor-team-kit/skills/control-ui"
-      ],
+      "config_skills": [],
       "agents": {
         "general": {
           "model": "openai/gpt-6-luna#max"
@@ -113,7 +109,13 @@
       "instruction_text": {
         "opencode.md": "# OpenCode instructions\n\nThese rules add to the shared agent instructions. They cover how the OpenCode\nterminal UI presents information and how to choose a representation.\n\n## Terminal rendering\n\nThe OpenCode TUI renders Markdown and several code fence types:\n\n- Tables render as aligned terminal tables.\n- Code fences render with syntax highlighting when the tag names a\n  language. Tag every fence, including plain output. Use `text` for ASCII\n  charts, tables, and transcripts.\n- `mermaid` fences render as terminal diagrams. Supported diagrams:\n  `flowchart`, `sequence`, `state`, `gantt`, `gitGraph`, `timeline`.\n- `latex` and `math` fences render as terminal math.\n- Headings, bold, italic, lists, quotes, and inline code render as styled\n  text.\n\nUnsupported Mermaid diagram types and raw HTML fall back to source text.\n\n## Choosing a representation\n\n- Use a table when items share the same fields.\n- Use a Mermaid diagram for flows, dependencies, state machines, sequences,\n  and timelines. Keep diagrams narrow: terminal width limits layout. Use\n  short node labels, state the direction explicitly (`flowchart TD`), and\n  avoid deep nesting. Split a large diagram instead of shrinking labels.\n- Use a tagged code fence when exact commands, configuration, or output\n  matter. Use `diff` fences for patches.\n- Use inline code for paths, commands, identifiers, and values.\n- Keep prose and visuals complementary. Do not repeat a table or diagram in\n  paragraphs.\n- Write interactive artifacts to a file and give the reader the path and the\n  command to open it. The transcript cannot run HTML, CSS, or JavaScript.\n- Mermaid parse failures fall back to source text. Ask the reader to confirm\n  the rendering when a diagram is hard to predict.\n"
       },
-      "skills": []
+      "skills": [
+        {
+          "name": "agent-browser-desktop",
+          "description": "Drive the shared, manually authenticated agent-browser profile for sites that need its logged-in session, especially ChatGPT and GitHub. Use for opening those sites, checking account pages, or interacting with a logged-in web app in a real browser. Do not use for public browsing, documentation lookup, web search, or project E2E tests.",
+          "path": "~/.config/opencode/skills/agent-browser-desktop"
+        }
+      ]
     },
     {
       "id": "delta",
@@ -142,13 +144,7 @@
       "instruction_text": {
         "CLAUDE.md": "<!-- Shared agent instructions live in ~/.agents/AGENTS.md. Edit that file, not this one. -->\n@~/.agents/AGENTS.md\n"
       },
-      "skills": [
-        {
-          "name": "diagnosing-bugs",
-          "description": "Diagnosis loop for hard bugs and performance regressions. Use when the user says \"diagnose\"/\"debug this\", or reports something broken/throwing/failing/slow.",
-          "path": "~/.claude/skills/diagnosing-bugs"
-        }
-      ]
+      "skills": []
     },
     {
       "id": "codex",
