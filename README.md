@@ -2,7 +2,7 @@
 
 # Agent hub
 
-Generated: `2026-10-28T23:45:08Z` (UTC).
+Generated: `2026-10-29T13:48:36Z` (UTC).
 
 Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.
 
@@ -16,11 +16,11 @@ Live files stay on the machine. This repo is only the published view.
 
 | Harness | Version | Config | Standing instructions | Default model |
 |---|---|---|---|---|
-| Pi | 1.4.0 | `~/.pi/agent` | ~/.agents/AGENTS.md; ~/.pi/agent/APPEND_SYSTEM.md | `grok-4.6` |
-| OpenCode | opencode v2.2.0 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md | `opencode-go/deepseek-v4.1-flash#max` |
+| Pi | 1.4.0 | `~/.pi/agent` | ~/.agents/AGENTS.md; ~/.pi/agent/APPEND_SYSTEM.md | `deepseek-v4.1-flash` |
+| OpenCode | opencode v2.2.1 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md | `opencode-go/deepseek-v4.1-flash#max` |
 | Delta | delta 0.21.0 | `~/.config/delta` | ~/.config/delta/AGENTS.md | `—` |
 | Claude Code | 2.1.312 (Claude Code) | `~/.claude` | ~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md) | `opus` |
-| Codex | codex-cli 0.164.0 | `~/.codex` | ~/.codex/AGENTS.md -> ~/.agents/AGENTS.md | `gpt-6.1-terra` |
+| Codex | codex-cli 0.165.0 | `~/.codex` | ~/.codex/AGENTS.md -> ~/.agents/AGENTS.md | `gpt-6.1-terra` |
 
 ## Shared layer (`~/.agents`)
 
@@ -78,23 +78,11 @@ Optimize for understanding, inspection, and verification.
 - Binary: `~/.local/bin/pi`
 - Version: `1.4.0`
 - Config: `~/.pi/agent`
-- Provider: `xai`
-- Enabled models: `xai/grok-4.6`, `opencode-go/muse-spark-1.3-contributor`, `opencode-go/deepseek-v4.1-flash`, `openai/gpt-6-astra`, `openai/gpt-6-luna`, `openai/gpt-6.1-sol`, `openai/gpt-6.1-terra`, `claude-sdk/claude-sonnet-5-5`, `claude-sdk/claude-haiku-5-5`, `claude-sdk/claude-opus-5-5`
-- Packages:
-  - `~/.local/share/pi-packages/pi-subagents/0.22.0-pins-context-bcd1de935503`
-  - `npm:pi-ask-user@0.17.0`
-  - `~/.local/share/pi-packages/pi-tasks/shell-controls-7f7de6f0a62f`
-  - `~/.local/share/pi-packages/fff/f85f3a851a53362b088840f5816755f9fd3c692c/packages/pi-fff`
-  - `npm:@narumitw/pi-file-context@0.54.4`
-  - `git:github.com/Fatih0234/pi-async-bash@2b715ff93ff663336425144c12ec695add0f2b81`
-  - `~/.local/share/pi-packages/pi-claude-subscription/0.2.4-diag-d10-02957349bfe9`
-  - `git:github.com/Fatih0234/pi-pstack-mode@f252fb10237c0442ac556bf5c877ea8621da5171`
-- Subagents: `Explore.md`, `Plan.md`, `auditor.md`, `comment-sicko.md`, `debugger.md`, `general-purpose.md`, `implementer.md`, `poteto-agent.md`, `reviewer.md`
+- Provider: `opencode-go`
+- Enabled models: `xai/grok-4.6`, `opencode-go/muse-spark-1.3-contributor`, `opencode-go/deepseek-v4.1-flash`, `openai/gpt-6-astra`, `openai/gpt-6-luna`, `openai/gpt-6.1-sol`, `openai/gpt-6.1-terra`
 - Extensions: `grok-notify.ts`, `herdr-agent-state.ts`, `pi-notify.ts`, `split-fork.ts`
 - Extra skills:
-  - `agent-browser`: Drive a real headless Chrome with the installed agent-browser CLI. Use to interact with or visually check a web page or a local web app, such as clicking, filling forms, taking screenshots, reading console errors, recording network traffic, running accessibility audits, or ad-hoc checks of a UI. Do not use for plain web search or reading documentation pages; use tinyfish-web for those. Do not use 
-  - `my-brain`: The user's personal second brain, an Obsidian Markdown vault at ~/my-brain. Use when the user asks to save, remember, capture, note down, organize, or look up something in "my brain", "my notes", "my vault", "second brain" or Obsidian; to record or read a project's status and next steps; or when earlier knowledge or decisions may be in the notes.
-  - `tinyfish-web`: Search the web and fetch clean page content with the installed TinyFish CLI. Use for web searches, current information, finding documentation, reading or summarizing URLs, comparing web sources, and source-backed fact checks. Search and Fetch only; no paid automation or other TinyFish services.
+  - `herdr`: Control Herdr, a terminal multiplexer for coding agents. Use only when the user explicitly mentions Herdr or asks to use Herdr to inspect or control panes, tabs, workspaces, commands, or another agent. Do not use merely because a task could benefit from a background terminal, delegation, or parallel work. Requires HERDR_ENV=1.
 
 ### Pi: `APPEND_SYSTEM.md`
 
@@ -117,7 +105,7 @@ These rules apply on top of AGENTS.md. They are about this terminal, not about w
 ## OpenCode
 
 - Binary: `~/.opencode/bin/opencode`
-- Version: `opencode v2.2.0`
+- Version: `opencode v2.2.1`
 - Config: `~/.config/opencode`
 - Agent `general` model: `opencode-go/deepseek-v4.1-flash#max`
 - Agent `explore` model: `opencode-go/deepseek-v4.1-flash#max`
@@ -272,7 +260,7 @@ Unsupported Mermaid diagram types and raw HTML fall back to source text.
 ## Codex
 
 - Binary: `~/.local/bin/codex`
-- Version: `codex-cli 0.164.0`
+- Version: `codex-cli 0.165.0`
 - Config: `~/.codex`
 ## How this file is updated
 
