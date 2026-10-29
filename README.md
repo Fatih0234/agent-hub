@@ -2,7 +2,7 @@
 
 # Agent hub
 
-Generated: `2026-10-29T13:48:36Z` (UTC).
+Generated: `2026-10-29T20:49:56Z` (UTC).
 
 Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.
 
@@ -16,7 +16,7 @@ Live files stay on the machine. This repo is only the published view.
 
 | Harness | Version | Config | Standing instructions | Default model |
 |---|---|---|---|---|
-| Pi | 1.4.0 | `~/.pi/agent` | ~/.agents/AGENTS.md; ~/.pi/agent/APPEND_SYSTEM.md | `deepseek-v4.1-flash` |
+| Pi | 1.4.0 | `~/.pi/agent` | ~/.agents/AGENTS.md; ~/.pi/agent/APPEND_SYSTEM.md | `gpt-6.1-sol` |
 | OpenCode | opencode v2.2.1 | `~/.config/opencode` | ~/.agents/AGENTS.md; ~/.config/opencode/opencode.md | `opencode-go/deepseek-v4.1-flash#max` |
 | Delta | delta 0.21.0 | `~/.config/delta` | ~/.config/delta/AGENTS.md | `—` |
 | Claude Code | 2.1.312 (Claude Code) | `~/.claude` | ~/.claude/CLAUDE.md (imports ~/.agents/AGENTS.md) | `opus` |
@@ -78,7 +78,7 @@ Optimize for understanding, inspection, and verification.
 - Binary: `~/.local/bin/pi`
 - Version: `1.4.0`
 - Config: `~/.pi/agent`
-- Provider: `opencode-go`
+- Provider: `openai`
 - Enabled models: `xai/grok-4.6`, `opencode-go/muse-spark-1.3-contributor`, `opencode-go/deepseek-v4.1-flash`, `openai/gpt-6-astra`, `openai/gpt-6-luna`, `openai/gpt-6.1-sol`, `openai/gpt-6.1-terra`
 - Extensions: `grok-notify.ts`, `herdr-agent-state.ts`, `pi-notify.ts`, `split-fork.ts`
 - Extra skills:

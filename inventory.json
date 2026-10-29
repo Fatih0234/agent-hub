@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T13:48:36Z",
+  "generated_at": "2026-10-29T20:49:56Z",
   "purpose": "Public snapshot of Fatih's coding-agent stack. Generated on the desktop. Not live config.",
   "shared": {
     "repo": "https://github.com/Fatih0234/agents",
@@ -14,8 +14,8 @@
       "binary": "~/.local/bin/pi",
       "version": "1.4.0",
       "config_dir": "~/.pi/agent",
-      "default_model": "deepseek-v4.1-flash",
-      "default_provider": "opencode-go",
+      "default_model": "gpt-6.1-sol",
+      "default_provider": "openai",
       "enabled_models": [
         "xai/grok-4.6",
         "opencode-go/muse-spark-1.3-contributor",
